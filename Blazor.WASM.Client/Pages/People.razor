@@ -1,0 +1,17 @@
+@page "/people"
+
+<div style="height:100vh;overflow-y:scroll">
+    <MudList Clickable="true" Style="display: flex; flex-wrap: wrap;">
+        <Virtualize Context="p" ItemsProvider="@LoadPeople" OverscanCount="100">
+            <ItemContent>
+                <PersonItem Person="@p"></PersonItem>
+            </ItemContent>
+            <Placeholder>
+                <div>
+                    <MudSkeleton SkeletonType="SkeletonType.Circle" Width="40px" Height="40px"/>
+                    <MudSkeleton Animation="Animation.Wave"/>
+                </div>
+            </Placeholder>
+        </Virtualize>
+    </MudList>
+</div>

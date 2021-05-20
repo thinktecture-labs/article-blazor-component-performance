@@ -1,0 +1,7 @@
+@inherits InputBase<string>
+
+<label>
+    @Label <textarea @ref="_textareaElement" placeholder="Debounce input" class="form-control @CssClass" id="@Id" @bind="CurrentValue"></textarea>
+</label>
+
+<p class="render-message">@_renderMessage</p>

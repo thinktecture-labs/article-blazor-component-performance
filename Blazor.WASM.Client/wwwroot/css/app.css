@@ -1,0 +1,38 @@
+﻿.person-container {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.person-container p {
+    margin-left: 12px;
+}
+
+label {
+    width: 100%;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.render-message {
+    color: #ff584f;
+}
+
+.render-message, textarea {
+    margin-bottom: 16px;
+}
+
+.margin-bottom {
+    margin-bottom: 16px !important;
+}
+
+.action {
+    position: fixed !important;
+    bottom: 32px;
+    right: 32px;
+}

@@ -1,0 +1,6 @@
+@inherits InputBase<string>
+
+<label>
+    @Label <input class="form-control @CssClass" placeholder="Override ShouldRender" id="@Id" @bind="CurrentValue"/>
+</label>
+<p class="render-message">@_renderMessage</p>

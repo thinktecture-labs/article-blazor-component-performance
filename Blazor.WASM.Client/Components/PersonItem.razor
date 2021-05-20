@@ -1,0 +1,18 @@
+<MudCard Style="width: 30%; margin: 16px;">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar Color="Color.Secondary">@Person.Name.First[0]</MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@Person.Name.First @Person.Name.Last</MudText>
+            <MudText Typo="Typo.body2">@Person.Gender</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" OnClick="NavigateToPerson"/>
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardMedia Image="@Person.Picture.Large" Height="250"/>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">@Person.Email | @Person.Phone</MudText>
+    </MudCardContent>
+</MudCard>

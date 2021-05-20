@@ -1,0 +1,13 @@
+@page "/SlowPeople"
+
+@if (_people != null)
+{
+    <div style="height:100vh;overflow-y:scroll">
+        <MudList Clickable="true" Style="display: flex; flex-wrap: wrap;">
+            @foreach (var p in _people)
+            {
+                <PersonItem @key="@p.Name.First" Person="@p"></PersonItem>
+            }
+        </MudList>
+    </div>
+}
