@@ -5,7 +5,7 @@ using Microsoft.JSInterop;
 
 namespace Blazor.WASM.Client.Components
 {
-    public partial class ThrottleTextArea : IDisposable
+    public partial class DebounceTextArea : IDisposable
     {
         [Parameter] public string Id { get; set; }
         [Parameter] public string Label { get; set; }
@@ -14,7 +14,7 @@ namespace Blazor.WASM.Client.Components
         [Inject] public IJSRuntime JS { get; set; }
 
         private ElementReference _textareaElement;
-        private DotNetObjectReference<ThrottleTextArea> _selfReference;
+        private DotNetObjectReference<DebounceTextArea> _selfReference;
         private string _renderMessage;
         private int _renderCount = 0;
         private int _valueHashCode;
@@ -60,7 +60,7 @@ namespace Blazor.WASM.Client.Components
                 await JS.InvokeVoidAsync("onDebounceInput",
                     _textareaElement, _selfReference, minInterval);
             }
-            
+
             _renderCount++;
             _renderMessage = firstRender ? "Rendered by first Render" : "Render by ShouldRender";
             _renderMessage = $"Override ShouldRender Input: {_renderMessage}. Rendered {_renderCount} times.";

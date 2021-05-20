@@ -28,7 +28,7 @@
                 Wird das Event geworfen, wird die Komponente neu gerendert. Zusätzlich kann hier auch das ShouldRender überschreiben werden,
                 um die Komponente erst dann zu rendern sobald sich der Wert ändert.
             </MudPaper>
-            <ThrottleTextArea @bind-Value="_person.Phone" PreventRendering="_preventRendering"></ThrottleTextArea>
+            <DebounceTextArea @bind-Value="_person.Phone" PreventRendering="_preventRendering"></DebounceTextArea>
         </div>
     </EditForm>
 }
