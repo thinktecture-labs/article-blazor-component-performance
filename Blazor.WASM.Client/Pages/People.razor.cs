@@ -19,6 +19,11 @@ namespace Blazor.WASM.Client.Pages
                 await PeopleService.GetPeopleAsync(request.StartIndex, numEmployees, request.CancellationToken);
             return new ItemsProviderResult<PersonDto>(people, 1000);
         }
-        
+
+
+        private void Clicked()
+        {
+            Console.WriteLine("Test");
+        }
     }
 }

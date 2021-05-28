@@ -19,16 +19,17 @@ namespace Blazor.WASM.Api.Services
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
+        public Task InitAsync()
+        {
+            return LoadPeopleIntoCache(CancellationToken.None);
+        }
+
         public async Task<List<PersonDto>> GetPeopleAsync(int skip = 0, int take = 100,
             CancellationToken cancellationToken = default)
         {
             if (_people.Count <= 0)
             {
                 await LoadPeopleIntoCache(cancellationToken);
-            }
-            else
-            {
-                await Task.Delay(200, cancellationToken);
             }
 
             return _people.Skip(skip).Take(take).ToList();
@@ -48,7 +49,7 @@ namespace Blazor.WASM.Api.Services
         private async Task LoadPeopleIntoCache(CancellationToken cancellationToken)
         {
             var apiResult = await _httpClient.GetFromJsonAsync<PeopleApiResult>(
-                $"https://randomuser.me/api/?results=1000",
+                $"https://randomuser.me/api/?nat=us,dk,fr,gb,de&results=1000",
                 cancellationToken);
             if (apiResult != null)
             {

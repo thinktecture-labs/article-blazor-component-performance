@@ -30,6 +30,7 @@ namespace Blazor.WASM.Client.Components
             }
         }
 
+
         protected override bool ShouldRender()
         {
             if (PreventRendering)

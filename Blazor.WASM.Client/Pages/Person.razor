@@ -3,7 +3,7 @@
 
 @if (_person != null)
 {
-    <EditForm Model="_person">
+    <EditForm @ref="_form"  Model="_person">
         <div class="mb-12">
             <MudPaper Class="pa-4 mb-4 mud-theme-secondary" Elevation="3">
                 Input Feld: Hier wird das ShouldRender überschrieben. Ist das Prevent-Rendering aktiviert,

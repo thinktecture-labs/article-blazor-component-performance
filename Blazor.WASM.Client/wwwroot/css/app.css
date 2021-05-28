@@ -36,3 +36,9 @@ input, textarea {
     bottom: 32px;
     right: 32px;
 }
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

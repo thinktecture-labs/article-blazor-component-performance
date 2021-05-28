@@ -1,8 +1,8 @@
 @page "/people"
 
 <div style="height:100vh;overflow-y:scroll">
-    <MudList Clickable="true" Style="display: flex; flex-wrap: wrap;">
-        <Virtualize Context="p" ItemsProvider="@LoadPeople" OverscanCount="100">
+    <MudList Clickable="true" Style="display: flex; flex-wrap: wrap; transition: all 2s;">
+        <Virtualize Context="p" ItemsProvider="@LoadPeople" OverscanCount="50">
             <ItemContent>
                 <PersonItem Person="@p"></PersonItem>
             </ItemContent>
@@ -14,4 +14,14 @@
             </Placeholder>
         </Virtualize>
     </MudList>
+</div>
+
+<div class="action">
+    <MudButton OnClick="Clicked"
+               Target="_blank"
+               Variant="Variant.Filled"
+               EndIcon="@Icons.Material.Filled.Edit"
+               Color="Color.Secondary">
+        Click me....
+    </MudButton>
 </div>

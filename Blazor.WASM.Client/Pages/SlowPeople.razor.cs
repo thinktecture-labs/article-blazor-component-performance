@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Blazor.WASM.Client.Services;
 using Blazor.WASM.Shared.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 namespace Blazor.WASM.Client.Pages
 {
@@ -15,6 +14,11 @@ namespace Blazor.WASM.Client.Pages
 
         private List<PersonDto> _people;
 
+        private void Clicked()
+        {
+            Console.WriteLine("Test");
+        }
+        
         protected override async Task OnInitializedAsync()
         {
             _people = await PeopleService.GetPeopleAsync(0, 1000, CancellationToken.None);
