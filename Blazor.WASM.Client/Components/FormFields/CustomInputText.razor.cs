@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components;
 
-namespace Blazor.WASM.Client.Components
+namespace Blazor.WASM.Client.Components.FormFields
 {
     public partial class CustomInputText
     {

@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{18D4F856-4148-47D5-8D27-E975B3A6300D}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Blazor.WASM.Performance" expanded="True">
+            <Node name="Blazor.WASM.Client" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Blazor.WASM.Client PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

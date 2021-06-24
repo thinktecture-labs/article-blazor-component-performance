@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
-namespace Blazor.WASM.Client.Components
+namespace Blazor.WASM.Client.Components.FormFields
 {
     public partial class HandleEventInputText : IHandleEvent
     {
@@ -10,7 +10,7 @@ namespace Blazor.WASM.Client.Components
         [Parameter] public string Label { get; set; }
         [Parameter] public bool PreventRendering { get; set; }
 
-        private bool _suppressRender;
+        private bool _preventRender;
         private string _renderMessage;
         private int _renderCount = 0;
 
@@ -22,18 +22,18 @@ namespace Blazor.WASM.Client.Components
                 var shouldAwaitTask = task.Status != TaskStatus.RanToCompletion &&
                                       task.Status != TaskStatus.Canceled;
 
-                if (!_suppressRender)
+                if (!_preventRender)
                 {
                     StateHasChanged();
                 }
 
                 return shouldAwaitTask
-                    ? CallStateHasChangedOnCompletionAsync(task, _suppressRender)
+                    ? CallStateHasChangedOnCompletionAsync(task, _preventRender)
                     : Task.CompletedTask;
             }
             finally
             {
-                _suppressRender = false;
+                _preventRender = false;
             }
         }
 
@@ -68,11 +68,11 @@ namespace Blazor.WASM.Client.Components
             }
         }
 
-        private void SuppressRender()
+        private void PreventRender()
         {
             if (PreventRendering)
             {
-                _suppressRender = true;
+                _preventRender = true;
             }
         }
 

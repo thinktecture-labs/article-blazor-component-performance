@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Blazor.WASM.Api.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Blazor.WASM.Api
 {
@@ -21,10 +16,14 @@ namespace Blazor.WASM.Api
             using (var scope = host.Services.CreateScope())
             {
                 // Get the DbContext instance
-                var peopleService = scope.ServiceProvider.GetRequiredService<PeopleService>();
+                var confService = scope.ServiceProvider.GetRequiredService<ConferencesService>();
+                var contributionsService = scope.ServiceProvider.GetRequiredService<ContributionsService>();
+                var speakerService = scope.ServiceProvider.GetRequiredService<SpeakerService>();
 
                 //Do the migration asynchronously
-                await peopleService.InitAsync();
+                await confService.InitAsync();
+                await contributionsService.InitAsync();
+                await speakerService.InitAsync();
             }
 
             // Run the WebHost, and start accepting requests

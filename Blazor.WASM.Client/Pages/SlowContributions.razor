@@ -1,0 +1,22 @@
+@page "/SlowContributions"
+
+
+@if (_contributions != null)
+{
+    <div class="container">
+        @foreach (var contribution in _contributions)
+        {
+            <ContributionCard Contribution="@contribution"></ContributionCard>
+        }
+    </div>
+}
+
+<div class="action">
+    <MudButton OnClick="Clicked"
+               Target="_blank"
+               Variant="Variant.Filled"
+               EndIcon="@Icons.Material.Filled.Edit"
+               Color="Color.Secondary">
+        Click me....
+    </MudButton>
+</div>

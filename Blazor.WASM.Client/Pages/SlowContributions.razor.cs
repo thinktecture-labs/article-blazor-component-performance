@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Blazor.WASM.Api.Models;
 using Blazor.WASM.Client.Services;
-using Blazor.WASM.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace Blazor.WASM.Client.Pages
 {
-    public partial class SlowPeople
+    public partial class SlowContributions
     {
-        [Inject] public PeopleService PeopleService { get; set; }
+        [Inject] public ContributionService ContributionService { get; set; }
 
-        private List<PersonDto> _people;
+        private List<Contribution> _contributions;
 
         private void Clicked()
         {
@@ -21,7 +21,7 @@ namespace Blazor.WASM.Client.Pages
         
         protected override async Task OnInitializedAsync()
         {
-            _people = await PeopleService.GetPeopleAsync(0, 1000, CancellationToken.None);
+            _contributions = await ContributionService.GetContributionsAsync(0, 1000, CancellationToken.None);
             await base.OnInitializedAsync();
         }
     }

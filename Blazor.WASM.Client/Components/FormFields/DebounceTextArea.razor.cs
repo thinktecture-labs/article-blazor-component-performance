@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Blazor.WASM.Client.Components
+namespace Blazor.WASM.Client.Components.FormFields
 {
     public partial class DebounceTextArea : IDisposable
     {

@@ -1,27 +1,26 @@
 using System;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using Blazor.WASM.Api.Models;
 using Blazor.WASM.Client.Services;
-using Blazor.WASM.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
 namespace Blazor.WASM.Client.Pages
 {
-    public partial class Person
+    public partial class EditContribution
     {
-        [Parameter] public string Name { get; set; }
-        [Inject] public PeopleService PeopleService { get; set; }
+        [Parameter] public int Id { get; set; }
+        [Inject] public ContributionService ContributionService { get; set; }
 
-        private PersonDto _person;
+        private Contribution _contribution;
         private bool _preventRendering = false;
         private EditForm _form;
 
         protected override async Task OnInitializedAsync()
         {
-            _person = await PeopleService.GetPerson(Name, CancellationToken.None);
+            _contribution = await ContributionService.GetContribution(Id, CancellationToken.None);
             await base.OnInitializedAsync();
         }
 
@@ -38,7 +37,7 @@ namespace Blazor.WASM.Client.Pages
                     }
 
                     Console.WriteLine(senderString);
-                    if (args.FieldIdentifier.FieldName == nameof(PersonDto.Name))
+                    if (args.FieldIdentifier.FieldName == nameof(Contribution.Title))
                     {
                     }
                 };

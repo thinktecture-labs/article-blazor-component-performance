@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Blazor.WASM.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Blazor.WASM.Api
@@ -19,7 +12,7 @@ namespace Blazor.WASM.Api
     public class Startup
     {
         private readonly string CorsPolicy = "CorsPolicy";
-        
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,16 +29,18 @@ namespace Blazor.WASM.Api
                     builder =>
                     {
                         builder
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
                             .AllowCredentials()
+                            .AllowAnyHeader()
+                            .WithHeaders(new[] {"GET", "HEAD", "PUT", "POST", "DELETE"})
                             .WithOrigins("https://localhost:5003");
                     });
             });
-            
+
             services.AddScoped(sp => new HttpClient());
-            services.AddScoped<PeopleService>();
-            
+            services.AddScoped<ConferencesService>();
+            services.AddScoped<ContributionsService>();
+            services.AddScoped<SpeakerService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -64,7 +59,7 @@ namespace Blazor.WASM.Api
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseCors(CorsPolicy);
 
             app.UseRouting();

@@ -1,15 +1,15 @@
-@page "/people/{name}"
+@page "/contributions/{Id:int}"
 @using Blazor.WASM.Client.Utils
 
-@if (_person != null)
+@if (_contribution != null)
 {
-    <EditForm @ref="_form"  Model="_person">
+    <EditForm @ref="_form" Model="_contribution">
         <div class="mb-12">
             <MudPaper Class="pa-4 mb-4 mud-theme-secondary" Elevation="3">
                 Input Feld: Hier wird das ShouldRender überschrieben. Ist das Prevent-Rendering aktiviert,
                 wird die Komponente nur dann gerendert, sobald sich der wert ändert.
             </MudPaper>
-            <CustomInputText @bind-Value="_person.Name.First" PreventRendering="_preventRendering"></CustomInputText>
+            <CustomInputText @bind-Value="_contribution.Title" PreventRendering="_preventRendering"></CustomInputText>
         </div>
         <div class="mb-12">
             <MudPaper Class="pa-4 mb-4 mud-theme-secondary" Elevation="3">
@@ -20,7 +20,7 @@
                     <li>oder das Rendern von einer anderen Komponente getriggert wird.</li>
                 </ul>
             </MudPaper>
-            <HandleEventInputText @bind-Value="_person.Name.Last" PreventRendering="_preventRendering"></HandleEventInputText>
+            <HandleEventInputText @bind-Value="_contribution.AdditionalInfo" PreventRendering="_preventRendering"></HandleEventInputText>
         </div>
         <div class="mb-12">
             <MudPaper Class="pa-4 mb-4 mud-theme-secondary" Elevation="3">
@@ -28,7 +28,7 @@
                 Wird das Event geworfen, wird die Komponente neu gerendert. Zusätzlich kann hier auch das ShouldRender überschreiben werden,
                 um die Komponente erst dann zu rendern sobald sich der Wert ändert.
             </MudPaper>
-            <DebounceTextArea @bind-Value="_person.Phone" PreventRendering="_preventRendering"></DebounceTextArea>
+            <DebounceTextArea @bind-Value="_contribution.Abstract" PreventRendering="_preventRendering"></DebounceTextArea>
         </div>
     </EditForm>
 }

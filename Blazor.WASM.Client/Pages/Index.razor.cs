@@ -6,15 +6,15 @@ namespace Blazor.WASM.Client.Pages
     {
         [Inject] public NavigationManager NavigationManager { get; set; }
 
-        private void NavigateToPeople(bool virtualize = true)
+        private void NavigateToContributions(bool virtualize = true)
         {
             if (virtualize)
             {
-                NavigationManager.NavigateTo("/people");
+                NavigationManager.NavigateTo("/contributions");
             }
             else
             {
-                NavigationManager.NavigateTo("/SlowPeople");
+                NavigationManager.NavigateTo("/SlowContributions");
             }
         }
     }

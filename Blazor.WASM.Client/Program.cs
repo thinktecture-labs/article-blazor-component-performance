@@ -17,7 +17,8 @@ namespace Blazor.WASM.Client
 
             builder.Services.AddScoped(
                 sp => new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});
-            builder.Services.AddScoped<PeopleService>();
+            builder.Services.AddScoped<ConferencesService>();
+            builder.Services.AddScoped<ContributionService>();
             builder.Services.AddMudServices();
 
             await builder.Build().RunAsync();
