@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
@@ -15,6 +16,31 @@ namespace Blazor.WASM.Client.Services
         public ContributionService(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        }
+
+        public async Task<int> GetContributionCountAsync(
+            CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, 
+                    $"https://localhost:5001/contributions"),
+                    cancellationToken);
+                response.EnsureSuccessStatusCode();
+                Console.WriteLine(response.Headers.GetValues("X-Contribution-Count"));
+                if (response.Headers.TryGetValues("Contribution-Count", out var values) &&
+                    int.TryParse(values.First(), out var count))
+                {
+                    return count;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Load Contributions failed. Exception {e.Message}");
+            }
+
+            // Fallback value for sample. Do NOT USE in Production!
+            return 198;
         }
 
         public async Task<List<Contribution>> GetContributionsAsync(int skip, int take,

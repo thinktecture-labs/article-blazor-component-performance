@@ -33,38 +33,25 @@
     </EditForm>
 }
 <div class="action">
-    @if (_preventRendering)
-    {
-        <MudButton OnClick="TriggerRendering"
-                   Target="_blank"
-                   Variant="Variant.Filled"
-                   EndIcon="@Icons.Material.Filled.Edit"
-                   Color="Color.Secondary">
-            Trigger Re-Rendering
-        </MudButton>
-        <MudButton OnClick="EventUtil.AsNonRenderingEventHandler(TogglePreventRendering)"
-                   Target="_blank"
-                   Variant="Variant.Filled"
-                   EndIcon="@Icons.Material.Filled.Power"
-                   Color="Color.Secondary">
-            Disable Prevent-Rendering
-        </MudButton>
-    }
-    else
-    {
-        <MudButton OnClick="TriggerRendering"
-                   Target="_blank"
-                   Variant="Variant.Filled"
-                   EndIcon="@Icons.Material.Filled.Edit"
-                   Color="Color.Primary">
-            Trigger Re-Rendering
-        </MudButton>
-        <MudButton OnClick="TogglePreventRendering"
-                   Target="_blank"
-                   Variant="Variant.Filled"
-                   EndIcon="@Icons.Material.Filled.PowerOff"
-                   Color="Color.Primary">
-            Enable Prevent-Rendering
-        </MudButton>
-    }
+    <MudButton OnClick="TriggerRendering"
+               Target="_blank"
+               Variant="Variant.Filled"
+               EndIcon="@Icons.Material.Filled.Edit"
+               Color="Color.Primary">
+        Trigger Re-Rendering
+    </MudButton>
+    <MudButton OnClick="_preventRendering ? EventUtil.AsNonRenderingEventHandler(TogglePreventRendering) : TogglePreventRendering"
+               Target="_blank"
+               Variant="Variant.Filled"
+               EndIcon="@GetPowerIcon()"
+               Color="Color.Secondary">
+        @if (_preventRendering)
+        {
+            <span>Disable Prevent-Rendering</span>
+        }
+        else
+        {
+            <span>Enable Prevent-Rendering</span>
+        }
+    </MudButton>
 </div>

@@ -6,6 +6,7 @@ using Blazor.WASM.Api.Models;
 using Blazor.WASM.Client.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using MudBlazor;
 
 namespace Blazor.WASM.Client.Pages
 {
@@ -51,12 +52,6 @@ namespace Blazor.WASM.Client.Pages
             _preventRendering = !_preventRendering;
             StateHasChanged();
         }
-
-        public void EmailChanged(string email)
-        {
-            Console.WriteLine(email);
-        }
-
         private void TriggerRendering()
         {
             if (_preventRendering)
@@ -67,6 +62,11 @@ namespace Blazor.WASM.Client.Pages
             {
                 Console.WriteLine("Trigger re-rendering without prevent Rendering");
             }
+        }
+
+        private string GetPowerIcon()
+        {
+            return _preventRendering ? Icons.Filled.Power : Icons.Filled.PowerOff;
         }
     }
 }

@@ -19,11 +19,13 @@ namespace Blazor.WASM.Api.Controllers
         }
 
         [HttpGet]
+        [HttpHead]
         public async Task<IActionResult> GetContributionsAsync([FromQuery] int skip = 0, [FromQuery] int take = 100,
             CancellationToken cancellationToken = default)
         {
             var contributions = await _contributionService.GetContributionsAsync();
             var result = contributions.Skip(skip).Take(take);
+            Response.Headers["X-Contribution-Count"] = $"{contributions.Count}";
             return Ok(result);
         }
 

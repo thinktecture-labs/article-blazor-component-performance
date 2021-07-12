@@ -20,11 +20,13 @@ namespace Blazor.WASM.Client.Pages
             ItemsProviderRequest request)
         {
             //TODO: Replace count with API Data
-            var numConfs = Math.Min(request.Count, 198 - request.StartIndex);
+            var count = await ContributionService.GetContributionCountAsync(request.CancellationToken);
+            
+            var numContributions = Math.Min(request.Count, count - request.StartIndex);
             var contributions =
-                await ContributionService.GetContributionsAsync(request.StartIndex, numConfs,
+                await ContributionService.GetContributionsAsync(request.StartIndex, numContributions,
                     request.CancellationToken);
-            return new ItemsProviderResult<Contribution>(contributions, 198);
+            return new ItemsProviderResult<Contribution>(contributions, count);
         }
 
 

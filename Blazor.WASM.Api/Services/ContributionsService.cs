@@ -21,7 +21,7 @@ namespace Blazor.WASM.Api.Services
 
         public async Task<List<Contribution>> GetContributionsAsync()
         {
-            await Task.Delay(250);
+            await Task.Delay(100);
             return _root.Contributions;
         }
 
