@@ -13,6 +13,7 @@ namespace Blazor.WASM.Client.Components.FormFields
         [Parameter] public bool PreventRendering { get; set; }
         [Inject] public IJSRuntime JS { get; set; }
 
+        private IJSObjectReference _module;
         private ElementReference _textareaElement;
         private DotNetObjectReference<DebounceTextArea> _selfReference;
         private string _renderMessage;
@@ -28,6 +29,12 @@ namespace Blazor.WASM.Client.Components.FormFields
                 StateHasChanged();
                 _renderCount++;
             }
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/debounce.js");
+            await base.OnInitializedAsync();
         }
 
 
@@ -58,7 +65,11 @@ namespace Blazor.WASM.Client.Components.FormFields
                 Console.WriteLine("Register debounce JS Event");
                 _selfReference = DotNetObjectReference.Create(this);
                 var minInterval = 500; // Only notify every 500 ms
-                await JS.InvokeVoidAsync("onDebounceInput",
+                if (_module == null)
+                {
+                    _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/debounce.js");
+                }
+                await _module.InvokeVoidAsync("onDebounceInput",
                     _textareaElement, _selfReference, minInterval);
             }
 
