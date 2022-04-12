@@ -67,7 +67,7 @@ namespace Blazor.WASM.Client.Components.FormFields
                 var minInterval = 500; // Only notify every 500 ms
                 if (_module == null)
                 {
-                    _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/debounce.js");
+                    _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/FormFields/DebounceTextArea.razor.js");
                 }
                 await _module.InvokeVoidAsync("onDebounceInput",
                     _textareaElement, _selfReference, minInterval);
