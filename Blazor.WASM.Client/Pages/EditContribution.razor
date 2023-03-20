@@ -40,7 +40,7 @@
                Color="Color.Primary">
         Trigger Re-Rendering
     </MudButton>
-    <MudButton OnClick="_preventRendering ? EventUtil.AsNonRenderingEventHandler(TogglePreventRendering) : TogglePreventRendering"
+    <MudButton OnClick="_preventRendering ? Utils.EventUtil.AsNonRenderingEventHandler(TogglePreventRendering) : TogglePreventRendering"
                Target="_blank"
                Variant="Variant.Filled"
                EndIcon="@GetPowerIcon()"
