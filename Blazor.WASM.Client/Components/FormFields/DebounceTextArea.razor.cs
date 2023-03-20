@@ -33,7 +33,6 @@ namespace Blazor.WASM.Client.Components.FormFields
 
         protected override async Task OnInitializedAsync()
         {
-            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/debounce.js");
             await base.OnInitializedAsync();
         }
 

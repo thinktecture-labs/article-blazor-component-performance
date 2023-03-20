@@ -5,6 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="wwwroot\js\**" />
+      <Content Remove="wwwroot\js\**" />
+      <EmbeddedResource Remove="wwwroot\js\**" />
+      <None Remove="wwwroot\js\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.4" PrivateAssets="all" />
         <PackageReference Include="MudBlazor" Version="6.2.0" />
@@ -23,10 +30,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Blazor.WASM.Shared\Blazor.WASM.Shared.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\js\" />
     </ItemGroup>
 
 </Project>
