@@ -47,17 +47,19 @@ input, textarea {
     height: calc(100vh - 89px);
     overflow-y: scroll;
     display: flex;
-    flex-flow: wrap
+    flex-flow: wrap;
+    justify-content: center;
 }
 
 .card {
-    width: 300px;
+    width: 350px;
     height: 140px;
     margin: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    flex-shrink: 0;
 }
 
 .mud-card-actions {

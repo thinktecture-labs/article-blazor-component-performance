@@ -1,7 +1,7 @@
 @page "/Contributions"
 
 <div class="container">
-    <Virtualize Context="contribution" ItemsProvider="@LoadContributions">
+    <Virtualize Context="contribution" ItemsProvider="@LoadContributions" OverscanCount="50">
         <ItemContent>
             <ContributionCard Contribution="@contribution"></ContributionCard>
         </ItemContent>
