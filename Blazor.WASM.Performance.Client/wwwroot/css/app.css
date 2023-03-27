@@ -93,21 +93,40 @@ input, textarea {
     overflow-y: scroll;
     display: flex;
     flex-flow: wrap;
-    flex-shrink: 0;
+    justify-content: center;
 }
 
-div.card {
+.card {
     width: 350px;
     height: 140px;
-    margin: 0.5rem;
+    margin: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    flex-shrink: 0;
 }
 
 .mud-card-actions {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.quickgrid[theme=default] {
+    border-spacing: 0 15px;
+}
+
+.quickgrid[theme=default] .col-title {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.quickgrid[theme=default] > tbody > tr {
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
+.quickgrid[theme=default] > tbody > tr > td {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
 }

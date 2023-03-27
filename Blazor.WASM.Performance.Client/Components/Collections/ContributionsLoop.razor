@@ -1,0 +1,15 @@
+﻿@using MudBlazor
+
+@if (_isLoading)
+{
+    <MudAlert Severity="Severity.Info">Lade Contributions...</MudAlert>
+}
+else
+{
+    <div class="container">
+        @foreach (var contribution in _contributions)
+        {
+            <ContributionCard Contribution="@contribution"></ContributionCard>
+        }
+    </div>
+}

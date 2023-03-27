@@ -1,0 +1,10 @@
+﻿<div class="container">
+    <Virtualize Context="contribution" ItemsProvider="@LoadContributions" OverscanCount="35">
+        <ItemContent>
+            <ContributionCard Contribution="@contribution"></ContributionCard>
+        </ItemContent>
+        <Placeholder>
+            <PlaceholderCard></PlaceholderCard>
+        </Placeholder>
+    </Virtualize>
+</div>

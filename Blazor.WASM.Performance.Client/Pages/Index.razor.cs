@@ -14,7 +14,7 @@ namespace Blazor.WASM.Performance.Client.Pages
             }
             else
             {
-                NavigationManager.NavigateTo("/SlowContributions");
+                NavigationManager.NavigateTo("/contributions/slow");
             }
         }
     }

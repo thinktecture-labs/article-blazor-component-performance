@@ -1,0 +1,27 @@
+﻿<div class="grid">
+    <QuickGrid ItemsProvider="_contributionsProvider" Virtualize="true" Pagination="pagination">
+        <PropertyColumn Title="Titel" Align="Align.Left" Property="@(c => c.Title)" Sortable="true" Class="title" />
+        <PropertyColumn Title="Datum" Align="Align.Left" Property="@(c => c.Date)" Sortable="true" />
+        <PropertyColumn Title="Sprache" Align="Align.Left" Property="@(c => c.Language)" />
+        <PropertyColumn Title="PrimaryTag" Align="Align.Left" Property="@(c => c.PrimaryTag)" Sortable="true" />
+        <TemplateColumn Title="Actions">
+            <MudBlazor.MudButton OnClick="@(() => NavigateToConference(context))">Edit</MudBlazor.MudButton>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+<div class="page-buttons">
+    Page:
+    @if (pagination.TotalItemCount.HasValue)
+    {
+        for (var pageIndex = 0; pageIndex <= pagination.LastPageIndex; pageIndex++)
+        {
+            var capturedIndex = pageIndex;
+            <button @onclick="@(() => GoToPageAsync(capturedIndex))"
+                    class="@PageButtonClass(capturedIndex)"
+                    aria-current="@AriaCurrentValue(capturedIndex)"
+                    aria-label="Go to page @(pageIndex + 1)">
+                @(pageIndex + 1)
+            </button>
+        }
+    }
+</div>
