@@ -14,7 +14,7 @@ namespace Blazor.WASM.Performance.Client.Pages
 
         private GridItemsProvider<Contribution>? _contributionsProvider;
         private bool _showGridView = false;
-        private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+        private PaginationState pagination = new PaginationState { ItemsPerPage = 100 };
         protected override async Task OnInitializedAsync()
         {
             _contributionsProvider = async req =>
@@ -25,6 +25,7 @@ namespace Blazor.WASM.Performance.Client.Pages
                     items: response ?? new(),
                     totalItemCount: count);
             };
+            pagination.TotalItemCountChanged += (sender, eventArgs) => StateHasChanged();
 
             await base.OnInitializedAsync();
         }
@@ -40,10 +41,8 @@ namespace Blazor.WASM.Performance.Client.Pages
             return new ItemsProviderResult<Contribution>(contributions, count);
         }
 
-        private async Task GoToPageAsync(int pageIndex)
-        {
+        private async Task GoToPageAsync(int pageIndex) =>
             await pagination.SetCurrentPageIndexAsync(pageIndex);
-        }
 
         private string? PageButtonClass(int pageIndex)
             => pagination.CurrentPageIndex == pageIndex ? "current" : null;

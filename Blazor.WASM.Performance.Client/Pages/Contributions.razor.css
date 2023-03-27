@@ -1,4 +1,18 @@
-﻿/* Style the custom page links*/
+﻿::deep th.title {
+    width: 14rem;
+}
+
+/* Subtle stripe effect */
+::deep tr:nth-child(even) {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Don't collapse rows even if they are empty */
+::deep tbody tr {
+    height: 1.8rem;
+}
+
+/* Style the custom page links*/
 .page-buttons {
     margin: 1rem 0;
     align-items: center;

@@ -7,14 +7,14 @@
         Blazor WebAssembly Performance
     </MudBlazor.MudText>
     <MudBlazor.MudSpacer />
-    <MudBlazor.MudToggleIconButton @bind-Toggled="_showGridView" Icon="@MudBlazor.Icons.Material.Filled.ViewList" ToggledIcon="@MudBlazor.Icons.Material.Filled.GridView" Color="MudBlazor.Color.Surface"></MudBlazor.MudToggleIconButton>
+    <MudBlazor.MudToggleIconButton @bind-Toggled="_showGridView" Icon="@MudBlazor.Icons.Material.Filled.ViewList" ToggledIcon="@MudBlazor.Icons.Material.Filled.GridView" Color="MudBlazor.Color.Inherit" ToggledColor="MudBlazor.Color.Inherit"></MudBlazor.MudToggleIconButton>
 </MudBlazor.MudAppBar>
 
 @if (_showGridView)
 {
     <div>
         <QuickGrid ItemsProvider="_contributionsProvider" Virtualize="true" Pagination="pagination">
-            <PropertyColumn Title="Titel" Property="@(c => c.Title)" Sortable="true" />
+            <PropertyColumn Title="Titel" Property="@(c => c.Title)" Sortable="true" Class="title"/>
             <PropertyColumn Title="Datum" Property="@(c => c.Date)" Sortable="true" />
             <PropertyColumn Title="Sprache" Property="@(c => c.Language)" />
             <PropertyColumn Title="PrimaryTag" Property="@(c => c.PrimaryTag)" Sortable="true" />
@@ -36,12 +36,11 @@
             }
         }
     </div>
-    <p>Todo</p>
 }
 else
 {
     <div class="container">
-        <Virtualize Context="contribution" ItemsProvider="@LoadContributions" SpacerElement="p">
+        <Virtualize Context="contribution" ItemsProvider="@LoadContributions">
             <ItemContent>
                 <ContributionCard Contribution="@contribution"></ContributionCard>
             </ItemContent>

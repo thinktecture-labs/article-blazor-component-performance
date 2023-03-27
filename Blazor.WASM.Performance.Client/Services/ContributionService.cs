@@ -21,7 +21,6 @@ namespace Blazor.WASM.Performance.Client.Services
                     $"https://localhost:5001/contributions"),
                     cancellationToken);
                 response.EnsureSuccessStatusCode();
-                Console.WriteLine(response.Headers.GetValues("X-Contribution-Count"));
                 if (response.Headers.TryGetValues("Contribution-Count", out var values) &&
                     int.TryParse(values.First(), out var count))
                 {
