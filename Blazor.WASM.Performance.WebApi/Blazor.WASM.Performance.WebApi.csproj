@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Data\conferences.json" />
+    <Content Remove="Data\contributions.json" />
+    <Content Remove="Data\speaker.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\conferences.json" />
+    <EmbeddedResource Include="Data\contributions.json" />
+    <EmbeddedResource Include="Data\speaker.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor.WASM.Performance.Shared\Blazor.WASM.Performance.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
