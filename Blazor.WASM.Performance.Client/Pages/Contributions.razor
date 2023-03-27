@@ -1,63 +1,62 @@
 ﻿@page "/Contributions"
 @page "/Contributions/{mode}"
+@using Blazor.WASM.Performance.Shared.Models;
 
-<MudAppBar>
-    <MudText Typo="Typo.h4">
+<MudBlazor.MudAppBar>
+    <MudBlazor.MudText Typo="MudBlazor.Typo.h4">
         Blazor WebAssembly Performance
-    </MudText>
-    <MudSpacer />
-    <MudToggleIconButton @bind-Toggled="_showGridView" Icon="@Icons.Material.Filled.ViewList" ToggledIcon="@Icons.Material.Filled.GridView" Color="Color.Surface"></MudToggleIconButton>
-</MudAppBar>
+    </MudBlazor.MudText>
+    <MudBlazor.MudSpacer />
+    <MudBlazor.MudToggleIconButton @bind-Toggled="_showGridView" Icon="@MudBlazor.Icons.Material.Filled.ViewList" ToggledIcon="@MudBlazor.Icons.Material.Filled.GridView" Color="MudBlazor.Color.Surface"></MudBlazor.MudToggleIconButton>
+</MudBlazor.MudAppBar>
 
-<div class="container" style="padding: 1rem;">
-    @if (_showGridView)
-    {
-        <div>
-            <QuickGrid ItemsProvider="_contributionsProvider" Virtualize="true" Pagination="pagination">
-                <PropertyColumn Title="Titel" Property="@(c => c.Title)" Sortable="true" />
-                <PropertyColumn Title="Datum" Property="@(c => c.Date)" Format="yyyy-MM-dd" Sortable="true" />
-                <PropertyColumn Title="Sprache" Property="@(c => c.Language)" />
-                <PropertyColumn Title="PrimaryTag" Property="@(c => c.PrimaryTag)" Sortable="true" />
-            </QuickGrid>
-        </div>
-        <div class="page-buttons">
-            Page:
-            @if (pagination.TotalItemCount.HasValue)
+@if (_showGridView)
+{
+    <div>
+        <QuickGrid ItemsProvider="_contributionsProvider" Virtualize="true" Pagination="pagination">
+            <PropertyColumn Title="Titel" Property="@(c => c.Title)" Sortable="true" />
+            <PropertyColumn Title="Datum" Property="@(c => c.Date)" Sortable="true" />
+            <PropertyColumn Title="Sprache" Property="@(c => c.Language)" />
+            <PropertyColumn Title="PrimaryTag" Property="@(c => c.PrimaryTag)" Sortable="true" />
+        </QuickGrid>
+    </div>
+    <div class="page-buttons">
+        Page:
+        @if (pagination.TotalItemCount.HasValue)
+        {
+            for (var pageIndex = 0; pageIndex <= pagination.LastPageIndex; pageIndex++)
             {
-                for (var pageIndex = 0; pageIndex <= pagination.LastPageIndex; pageIndex++)
-                {
-                    var capturedIndex = pageIndex;
-                    <button @onclick="@(() => GoToPageAsync(capturedIndex))"
-                            class="@PageButtonClass(capturedIndex)"
-                            aria-current="@AriaCurrentValue(capturedIndex)"
-                            aria-label="Go to page @(pageIndex + 1)">
-                        @(pageIndex + 1)
-                    </button>
-                }
+                var capturedIndex = pageIndex;
+                <button @onclick="@(() => GoToPageAsync(capturedIndex))"
+                        class="@PageButtonClass(capturedIndex)"
+                        aria-current="@AriaCurrentValue(capturedIndex)"
+                        aria-label="Go to page @(pageIndex + 1)">
+                    @(pageIndex + 1)
+                </button>
             }
-        </div>
-        <p>Todo</p>
-    }
-    else
-    {
-        <div class="container">
-            <Virtualize Context="contribution" ItemsProvider="@LoadContributions" SpacerElement="p">
-                <ItemContent>
-                    <ContributionCard Contribution="@contribution"></ContributionCard>
-                </ItemContent>
-                <Placeholder>
-                    <PlaceholderCard></PlaceholderCard>
-                </Placeholder>
-            </Virtualize>
-        </div>
-        <div class="action">
-            <MudButton OnClick="Clicked"
-                   Target="_blank"
-                   Variant="Variant.Filled"
-                   EndIcon="@Icons.Material.Filled.Edit"
-                   Color="Color.Secondary">
-                Click me....
-            </MudButton>
-        </div>
-    }
-</div>
+        }
+    </div>
+    <p>Todo</p>
+}
+else
+{
+    <div class="container">
+        <Virtualize Context="contribution" ItemsProvider="@LoadContributions" SpacerElement="p">
+            <ItemContent>
+                <ContributionCard Contribution="@contribution"></ContributionCard>
+            </ItemContent>
+            <Placeholder>
+                <PlaceholderCard></PlaceholderCard>
+            </Placeholder>
+        </Virtualize>
+    </div>
+    <div class="action">
+        <MudBlazor.MudButton OnClick="Clicked"
+                         Target="_blank"
+                         Variant="MudBlazor.Variant.Filled"
+                         EndIcon="@MudBlazor.Icons.Material.Filled.Edit"
+                         Color="MudBlazor.Color.Secondary">
+            Click me....
+        </MudBlazor.MudButton>
+    </div>
+}
